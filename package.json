@@ -1,0 +1,8 @@
+{
+  "name": "earned-au",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}

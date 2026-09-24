@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3eb">
+  <meta name="description" content="A live estimate of what your Australian salary has earned this financial year, month, week and workday after tax.">
+  <title>Earned — your salary, in real time</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Earned home"><span class="brand-mark">e<span>.</span></span><span>earned</span></a>
+      <div class="topbar-right"><span class="live-dot"></span><span id="liveTime">Sydney time</span><button class="settings-toggle" id="settingsToggle" type="button" aria-controls="settingsPanel" aria-expanded="false">Adjust assumptions <span aria-hidden="true">↗</span></button></div>
+    </header>
+
+    <main id="top">
+      <div class="eyebrow-row"><span class="eyebrow">THE MONEY YOU'VE MADE</span><span class="financial-year" id="fyLabel">FY 2026–27</span></div>
+      <div class="intro"><div><h1>Your pay, <em>in motion.</em></h1><p>See what your salary has earned so far, with an estimate of Australian tax already taken out.</p></div><div class="intro-stamp"><span>ESTIMATED<br>TAKE-HOME</span><span class="stamp-spark">✳</span></div></div>
+
+      <section class="hero-grid" aria-label="Live earnings">
+        <div class="year-card">
+          <div class="card-topline"><span>THIS FINANCIAL YEAR</span><span class="corner-arrow" aria-hidden="true">↗</span></div>
+          <div class="hero-money"><span class="currency">$</span><span id="yearNet">0</span><span class="cents" id="yearCents">.00</span></div>
+          <p class="hero-sub">Estimated after income tax, Medicare and selected adjustments</p>
+          <div class="year-card-bottom"><div class="progress-copy"><span>YOUR YEAR SO FAR</span><strong id="fyProgressText">0%</strong></div><div class="progress-track"><span id="fyProgressBar"></span></div><div class="progress-dates"><span id="fyStartLabel">1 JUL 2026</span><span id="fyEndLabel">30 JUN 2027</span></div></div>
+        </div>
+        <div class="today-card">
+          <div class="card-topline"><span>SINCE STARTING WORK TODAY</span><span class="pulse" aria-hidden="true"></span></div>
+          <div class="today-content"><div class="today-icon" aria-hidden="true">↗</div><div class="today-amount" id="todayNet">$0.00</div><p id="todayStatus">Counting your workday in real time</p></div>
+          <div class="today-footer"><span id="workHoursLabel">9:00 AM – 5:00 PM</span><span id="todayFractionLabel">0% OF WORKDAY</span></div>
+        </div>
+      </section>
+
+      <section class="period-section" aria-labelledby="periodTitle"><div class="section-heading"><div><span class="section-kicker">A CLOSER LOOK</span><h2 id="periodTitle">Every bit adds up.</h2></div><span class="section-note">After-tax estimates · AUD</span></div><div class="period-grid"><article class="period-card"><span class="period-icon" aria-hidden="true">◷</span><span class="period-label">THIS WEEK</span><strong id="weekNet">$0.00</strong><div class="period-foot"><span>Since Monday</span><span class="period-arrow" aria-hidden="true">↗</span></div></article><article class="period-card"><span class="period-icon" aria-hidden="true">▦</span><span class="period-label">THIS MONTH</span><strong id="monthNet">$0.00</strong><div class="period-foot"><span>Since the 1st</span><span class="period-arrow" aria-hidden="true">↗</span></div></article><article class="period-card gross-card"><span class="period-icon" aria-hidden="true">◎</span><span class="period-label">YEAR SO FAR · BEFORE TAX</span><strong id="yearGross">$0.00</strong><div class="period-foot"><span>Gross salary earned</span><span class="period-arrow" aria-hidden="true">↗</span></div></article></div></section>
+
+      <section class="details-grid" aria-label="Salary and tax details"><div class="breakdown-card"><div class="section-kicker">WHERE IT GOES</div><h2>Your annual pay, unpacked.</h2><p>A full-year estimate based on your settings. Each live number above uses the same after-tax share.</p><div class="breakdown-bar" aria-hidden="true"><span class="bar-net" id="barNet"></span><span class="bar-tax" id="barTax"></span></div><div class="breakdown-list"><div><span><i class="legend-dot net-dot"></i>Take-home estimate</span><strong id="annualNet">$0</strong></div><div><span><i class="legend-dot tax-dot"></i>Income tax</span><strong id="annualTax">$0</strong></div><div><span><i class="legend-dot medicare-dot"></i>Medicare levy</span><strong id="annualMedicare">$0</strong></div><div id="surchargeRow"><span><i class="legend-dot surcharge-dot"></i>Medicare levy surcharge</span><strong id="annualSurcharge">$0</strong></div><div id="div293Row"><span><i class="legend-dot div-dot"></i>Division 293 estimate</span><strong id="annualDiv293">$0</strong></div></div></div><div class="rate-card"><div class="section-kicker">AT A GLANCE</div><div class="rate-block"><span>ESTIMATED AFTER-TAX RATE</span><strong id="hourlyNet">$0<span>/hr</span></strong><p>Per scheduled working hour, including paid weekdays across the year.</p></div><div class="rate-divider"></div><div class="mini-stats"><div><span>ANNUAL GROSS</span><strong id="annualGross">$0</strong></div><div><span>EFFECTIVE TAX</span><strong id="effectiveTax">0%</strong></div></div><button class="edit-button" id="editButton" type="button">Edit your assumptions <span aria-hidden="true">↗</span></button></div></section>
+
+      <section class="method"><div><span class="section-kicker">HOW THIS WORKS</span><h2>A useful estimate, not your payslip.</h2></div><div class="method-copy"><p>Your annual salary is spread evenly across Monday to Friday workdays in the Australian financial year. Today advances only during your chosen work hours, excluding your break. Paid leave and public holidays count as ordinary weekdays; bonuses, deductions, HELP repayments and tax offsets are not included. If your package includes super, the selected rate is used to estimate the salary portion.</p><p>Tax uses the <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents" target="_blank" rel="noopener noreferrer">ATO resident income tax rates</a>, the <a href="https://www.ato.gov.au/individuals-and-families/your-tax-return/instructions-to-complete-your-tax-return/mytax-instructions/2026/tax-offsets/medicare-levy-and-medicare-levy-surcharge/medicare-levy" target="_blank" rel="noopener noreferrer">2% Medicare levy</a>, <a href="https://privatehealth.gov.au/health_insurance/surcharges_incentives/medicare_levy.htm" target="_blank" rel="noopener noreferrer">2026–27 surcharge tiers</a>, and optional <a href="https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/caps-limits-and-tax-on-super-contributions/division-293-tax-on-concessional-contributions-by-high-income-earners" target="_blank" rel="noopener noreferrer">Division 293</a>. Division 293 is deducted from this estimate even if you pay it from super. The annual estimate is allocated evenly as work is done; it does not model payroll withholding dates.</p></div></section>
+    </main>
+    <footer><span>earned<span class="footer-dot">.</span></span><span>Made for the moments between paydays.</span><span>Australia/Sydney · AUD</span></footer>
+  </div>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="settings-panel" id="settingsPanel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" hidden>
+    <div class="settings-head"><div><span class="section-kicker">MAKE IT YOURS</span><h2 id="settingsTitle">Your assumptions</h2></div><button class="close-button" id="closeSettings" type="button" aria-label="Close settings">×</button></div>
+    <div class="settings-scroll"><p class="settings-intro">These details stay in this browser. Adjust them to make the estimate feel more like your pay.</p>
+      <form id="settingsForm"><fieldset><legend>Salary</legend><label for="salary">Annual amount (AUD)</label><div class="money-input"><span>$</span><input id="salary" name="salary" type="number" min="0" step="1000" inputmode="decimal" value="180000"></div><label for="salaryType">This amount is</label><select id="salaryType" name="salaryType"><option value="exclude">Salary, excluding super</option><option value="include">Package, including super</option></select><div class="conditional" id="superRateWrap" hidden><label for="superRate">Employer super rate in package (%)</label><input id="superRate" name="superRate" type="number" min="0" max="50" step="0.1" value="12"></div></fieldset>
+      <fieldset><legend>Your workday</legend><div class="field-pair"><div><label for="workStart">Start</label><input id="workStart" name="workStart" type="time" value="09:00"></div><div><label for="workEnd">Finish</label><input id="workEnd" name="workEnd" type="time" value="17:00"></div></div><div class="field-pair"><div><label for="breakStart">Break starts</label><input id="breakStart" name="breakStart" type="time" value="12:30"></div><div><label for="breakEnd">Break ends</label><input id="breakEnd" name="breakEnd" type="time" value="13:00"></div></div><p class="field-hint">Monday to Friday · same hours each workday.</p></fieldset>
+      <fieldset><legend>Tax details</legend><label for="household">Medicare surcharge household</label><select id="household" name="household"><option value="single">Single</option><option value="family">Family / couple</option></select><div class="conditional" id="familyFields" hidden><div class="field-pair"><div><label for="partnerIncome">Partner income</label><input id="partnerIncome" name="partnerIncome" type="number" min="0" step="1000" value="0"></div><div><label for="children">Dependent children</label><input id="children" name="children" type="number" min="0" step="1" value="0"></div></div></div><label class="check-row"><input id="hospitalCover" name="hospitalCover" type="checkbox" checked><span><strong>I have eligible hospital cover</strong><small>Turns off the Medicare levy surcharge estimate.</small></span></label><label class="check-row"><input id="includeDiv293" name="includeDiv293" type="checkbox" checked><span><strong>Include Division 293</strong><small>Additional tax that may apply to high income earners' concessional super.</small></span></label><div class="conditional" id="div293Fields"><label for="concessionalSuper">Estimated annual concessional super (AUD)</label><div class="money-input"><span>$</span><input id="concessionalSuper" name="concessionalSuper" type="number" min="0" step="1000" value="30000"></div><p class="field-hint">Check this against your super statement. Employer caps and excess contributions can change the result.</p></div></fieldset><p class="form-error" id="formError" role="alert" hidden></p><button class="save-button" type="submit">Update my view <span aria-hidden="true">↗</span></button></form></div>
+  </aside>
+</body>
+</html>
